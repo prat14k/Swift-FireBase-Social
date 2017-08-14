@@ -34,7 +34,7 @@ class ViewController: UIViewController , FBSDKLoginButtonDelegate {
         view.addConstraint(widthContr)
         
         fbLoginBtn.delegate = self
-        
+        fbLoginBtn.readPermissions = ["email", "public_profile" , "user_friends"]
         
     }
 
@@ -51,7 +51,19 @@ class ViewController: UIViewController , FBSDKLoginButtonDelegate {
             return
         }
         
-        print("Successful login to fb")
+        //print("Successful login to fb")
+        
+        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,email,first_name,last_name,link,locale, name, picture.type(large), birthday,location ,friends ,hometown , friendlists"]).start { (connection, result, error) in
+            if error != nil {
+                print("Graph Request Error : ",error)
+                return
+            }
+            
+            print(result)
+            
+        }
+        
+        
     }
     
     

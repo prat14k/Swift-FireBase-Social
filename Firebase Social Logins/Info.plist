@@ -64,5 +64,7 @@
     </array>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>{human-readable reason for photo access}</string>
+    <key>Dummytext</key>
+    <string>{FB-APP-ID}</string>
 </dict>
 </plist>
