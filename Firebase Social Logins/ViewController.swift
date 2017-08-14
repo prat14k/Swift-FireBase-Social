@@ -8,13 +8,15 @@
 
 import UIKit
 import FBSDKLoginKit
+import Firebase
 
 class ViewController: UIViewController , FBSDKLoginButtonDelegate {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        let fbLoginBtn = FBSDKLoginButton()
+       let fbLoginBtn = FBSDKLoginButton()
         
        // fbLoginBtn.sizeToFit()
         
@@ -24,7 +26,7 @@ class ViewController: UIViewController , FBSDKLoginButtonDelegate {
         
         let centerXContr = NSLayoutConstraint(item: fbLoginBtn, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1.0, constant: 0.0)
     
-        let YContr = NSLayoutConstraint(item: fbLoginBtn, attribute: NSLayoutAttribute.topMargin, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.topMargin, multiplier: 1.0, constant: 40.0)
+        let YContr = NSLayoutConstraint(item: fbLoginBtn, attribute: NSLayoutAttribute.topMargin, relatedBy: NSLayoutRelation.equal, toItem: topLayoutGuide, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1.0, constant: 70.0)
         
         
         let widthContr = NSLayoutConstraint(item: fbLoginBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.width, multiplier: 1.0, constant: -40.0)
@@ -38,6 +40,21 @@ class ViewController: UIViewController , FBSDKLoginButtonDelegate {
         
     }
 
+    @IBAction func fbLoginAction(_ sender: UIButton) {
+    
+        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile" , "user_friends"], from: self) { (result, error) in
+            
+            if error != nil {
+                print("Login Error: ",error)
+                return
+            }
+           // print(result?.token.tokenString)
+            self.showEmailAddress()
+        }
+    }
+    
+    
+    
     /**
      Sent to the delegate when the button was used to login.
      - Parameter loginButton: the sender
@@ -51,19 +68,41 @@ class ViewController: UIViewController , FBSDKLoginButtonDelegate {
             return
         }
         
+        showEmailAddress()
+        
+    }
+    
+    func showEmailAddress(){
         //print("Successful login to fb")
         
-        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,email,first_name,last_name,link,locale, name, picture.type(large), birthday,location ,friends ,hometown , friendlists"]).start { (connection, result, error) in
+        let accessToken = FBSDKAccessToken.current()
+        
+        let accessTokenString = accessToken?.tokenString
+        
+        if(accessTokenString == nil){
+            return;
+        }
+        
+        let credentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString!)
+        Auth.auth().signIn(with: credentials) { (user, error) in
             if error != nil {
-                print("Graph Request Error : ",error)
-                return
+                print("Firebase Error: ",error ?? "")
             }
             
-            print(result)
-            
+            print(user ?? "")
         }
         
         
+        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,email,first_name,last_name,link,locale, name, picture.type(large), birthday,location ,friends ,hometown , friendlists"]).start { (connection, result, error) in
+            if error != nil {
+                print("Graph Request Error : ",error ?? "")
+                return
+            }
+            
+            print(result ?? "")
+            
+        }
+
     }
     
     

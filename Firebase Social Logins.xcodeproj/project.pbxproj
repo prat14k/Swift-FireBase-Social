@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5DC8E98F6BF0DAB9FFCF7B3B /* Pods_Firebase_Social_Logins.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2AE77B6417D5D07BA70FFCC /* Pods_Firebase_Social_Logins.framework */; };
+		ABC761CF1F41BD0C00774D7E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABC761CE1F41BD0C00774D7E /* GoogleService-Info.plist */; };
 		DB47D6621F40A5DF00534B8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB47D6611F40A5DF00534B8F /* AppDelegate.swift */; };
 		DB47D6641F40A5DF00534B8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB47D6631F40A5DF00534B8F /* ViewController.swift */; };
 		DB47D6671F40A5DF00534B8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB47D6651F40A5DF00534B8F /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		7C2C01FEE56D820818FF5361 /* Pods-Firebase Social Logins.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase Social Logins.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Firebase Social Logins/Pods-Firebase Social Logins.debug.xcconfig"; sourceTree = "<group>"; };
 		9F964104BAAF9BF9043E2408 /* Pods-Firebase Social Logins.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase Social Logins.release.xcconfig"; path = "Pods/Target Support Files/Pods-Firebase Social Logins/Pods-Firebase Social Logins.release.xcconfig"; sourceTree = "<group>"; };
+		ABC761CE1F41BD0C00774D7E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B2AE77B6417D5D07BA70FFCC /* Pods_Firebase_Social_Logins.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase_Social_Logins.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB47D65E1F40A5DF00534B8F /* Firebase Social Logins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Firebase Social Logins.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB47D6611F40A5DF00534B8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				DB47D6681F40A5DF00534B8F /* Assets.xcassets */,
 				DB47D66A1F40A5DF00534B8F /* LaunchScreen.storyboard */,
 				DB47D66D1F40A5DF00534B8F /* Info.plist */,
+				ABC761CE1F41BD0C00774D7E /* GoogleService-Info.plist */,
 			);
 			path = "Firebase Social Logins";
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB47D66C1F40A5DF00534B8F /* LaunchScreen.storyboard in Resources */,
+				ABC761CF1F41BD0C00774D7E /* GoogleService-Info.plist in Resources */,
 				DB47D6691F40A5DF00534B8F /* Assets.xcassets in Resources */,
 				DB47D6671F40A5DF00534B8F /* Main.storyboard in Resources */,
 			);
@@ -204,6 +208,9 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -211,6 +218,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
