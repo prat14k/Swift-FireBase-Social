@@ -9,24 +9,23 @@
 import UIKit
 import FBSDKLoginKit
 import Firebase
+import GoogleSignIn
 
-class ViewController: UIViewController , FBSDKLoginButtonDelegate {
+class ViewController: UIViewController , FBSDKLoginButtonDelegate , GIDSignInUIDelegate{
 
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    
-       let fbLoginBtn = FBSDKLoginButton()
+    func setupFBButton(){
+        let fbLoginBtn = FBSDKLoginButton()
         
-       // fbLoginBtn.sizeToFit()
+        // fbLoginBtn.sizeToFit()
         
         view.addSubview(fbLoginBtn)
         
         fbLoginBtn.translatesAutoresizingMaskIntoConstraints = false
         
         let centerXContr = NSLayoutConstraint(item: fbLoginBtn, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1.0, constant: 0.0)
-    
-        let YContr = NSLayoutConstraint(item: fbLoginBtn, attribute: NSLayoutAttribute.topMargin, relatedBy: NSLayoutRelation.equal, toItem: topLayoutGuide, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1.0, constant: 70.0)
+        
+        let YContr = NSLayoutConstraint(item: fbLoginBtn, attribute: NSLayoutAttribute.topMargin, relatedBy: NSLayoutRelation.equal, toItem: topLayoutGuide, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1.0, constant: 40.0)
         
         
         let widthContr = NSLayoutConstraint(item: fbLoginBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.width, multiplier: 1.0, constant: -40.0)
@@ -38,14 +37,53 @@ class ViewController: UIViewController , FBSDKLoginButtonDelegate {
         fbLoginBtn.delegate = self
         fbLoginBtn.readPermissions = ["email", "public_profile" , "user_friends"]
         
+        
+    }
+    
+    
+    func setupGoogleBtn(){
+        let googleBtn = GIDSignInButton()
+        view.addSubview(googleBtn)
+        
+        googleBtn.translatesAutoresizingMaskIntoConstraints = false
+        
+        let centerXContr = NSLayoutConstraint(item: googleBtn, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1.0, constant: 0.0)
+        
+        let YContr = NSLayoutConstraint(item: googleBtn, attribute: NSLayoutAttribute.topMargin, relatedBy: NSLayoutRelation.equal, toItem: topLayoutGuide, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1.0, constant: 80.0)
+        
+        
+        let widthContr = NSLayoutConstraint(item: googleBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.width, multiplier: 1.0, constant: -40.0)
+        
+        view.addConstraint(centerXContr)
+        view.addConstraint(YContr)
+        view.addConstraint(widthContr)
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        setupFBButton()
+        setupGoogleBtn()
+        
+        
     }
 
+    @IBAction func googleSigninAction(_ sender: Any) {
+        
+        GIDSignIn.sharedInstance().signIn()
+        
+    }
+    
+    
     @IBAction func fbLoginAction(_ sender: UIButton) {
     
         FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile" , "user_friends"], from: self) { (result, error) in
             
             if error != nil {
-                print("Login Error: ",error)
+                print("Login Error: ",error ?? "")
                 return
             }
            // print(result?.token.tokenString)

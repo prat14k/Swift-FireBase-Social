@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,24 +23,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQU-XX-NG2">
-                                <rect key="frame" x="142" y="28" width="91" height="33"/>
+                                <rect key="frame" x="26" y="624" width="323" height="33"/>
                                 <color key="backgroundColor" red="0.19278021460410816" green="0.28148021094731013" blue="0.80047765540000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="91" id="f10-ry-pvh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
-                                <state key="normal" title="FB Login">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Custom FB Login">
                                     <color key="titleColor" red="1" green="0.99107860948587223" blue="0.95408776673213469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="fbLoginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="diu-Uf-CWh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="488-lA-NF7">
+                                <rect key="frame" x="26" y="576" width="323" height="33"/>
+                                <color key="backgroundColor" red="1" green="0.66093454198453827" blue="0.14789350874549112" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Custom Google Login">
+                                    <color key="titleColor" red="1" green="0.99107860950000004" blue="0.95408776669999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="googleSigninAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SPq-1P-bW8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cQU-XX-NG2" secondAttribute="bottom" constant="10" id="2st-qK-4j2"/>
+                            <constraint firstItem="488-lA-NF7" firstAttribute="width" secondItem="cQU-XX-NG2" secondAttribute="width" id="DsS-sr-Oal"/>
                             <constraint firstItem="cQU-XX-NG2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gle-Gb-DCy"/>
-                            <constraint firstItem="cQU-XX-NG2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="ato-Nl-6aN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cQU-XX-NG2" secondAttribute="trailing" constant="10" id="IMu-IJ-d5p"/>
+                            <constraint firstItem="cQU-XX-NG2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="IwV-7v-mdV"/>
+                            <constraint firstItem="cQU-XX-NG2" firstAttribute="top" secondItem="488-lA-NF7" secondAttribute="bottom" constant="15" id="swX-0G-4z6"/>
+                            <constraint firstItem="488-lA-NF7" firstAttribute="centerX" secondItem="cQU-XX-NG2" secondAttribute="centerX" id="wQS-It-luj"/>
                         </constraints>
                     </view>
                 </viewController>

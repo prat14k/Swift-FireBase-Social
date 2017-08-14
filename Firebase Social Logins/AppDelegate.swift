@@ -9,9 +9,10 @@
 import UIKit
 import FBSDKCoreKit
 import Firebase
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
   
@@ -19,17 +20,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
 
-        FirebaseApp.configure()
-        
+        GIDSignIn.sharedInstance().handle(url,
+                                          sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String,
+                                          annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+
         return handled
     }
     
- 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FirebaseApp.configure()
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
         
         return true
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if error != nil {
+            print("Google Sigin Error : ", error ?? "")
+            return
+        }
+        //print("Sigin Done Google")
+        
+        let idToken = user.authentication.idToken
+        if idToken == nil{
+            return
+        }
+        let accessToken = user.authentication.accessToken
+        if accessToken == nil{
+            return
+        }
+    
+        let credentials = GoogleAuthProvider.credential(withIDToken: idToken!, accessToken: accessToken!)
+        
+        Auth.auth().signIn(with: credentials) { (user, error) in
+            if error != nil {
+                print("Error Forebase Google Authentication",error ?? "")
+                return
+            }
+            
+            print(user?.uid ?? "")
+            print(user?.email ?? "")
+        }
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
