@@ -104,6 +104,7 @@
 				DB47D65C1F40A5DF00534B8F /* Resources */,
 				E08A4230337B2C06405C95DF /* [CP] Embed Pods Frameworks */,
 				62ACF024AA89CB8965779788 /* [CP] Copy Pods Resources */,
+				AB004A7D1F42EA5600D905EC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -190,6 +191,8 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Firebase Social Logins/Pods-Firebase Social Logins-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -199,6 +202,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Firebase Social Logins/Pods-Firebase Social Logins-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		AB004A7D1F42EA5600D905EC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 914329ee0e43b862929c7340f88e5e31cebc3701 81e386c144b8e69b2293e8b68bd841cf6fc1a6ff71cc3be4e66ca2405826c2b2";
 		};
 		E08A4230337B2C06405C95DF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

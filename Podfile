@@ -13,8 +13,9 @@ target 'Firebase Social Logins' do
 
   pod 'GoogleSignIn'
 
+  pod ‘Fabric’
+  pod ‘TwitterKit’
   	
-
   pod ‘Firebase/Auth’
 
 end

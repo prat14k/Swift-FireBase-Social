@@ -10,6 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import Firebase
 import GoogleSignIn
+import TwitterKit
 
 class ViewController: UIViewController , FBSDKLoginButtonDelegate , GIDSignInUIDelegate{
 
@@ -67,10 +68,36 @@ class ViewController: UIViewController , FBSDKLoginButtonDelegate , GIDSignInUID
     
         setupFBButton()
         setupGoogleBtn()
-        
+        setupTwitterBtn()
         
     }
 
+    func setupTwitterBtn(){
+        
+        let twitterLoginBtn = TWTRLogInButton { (session, error) in
+            if error != nil {
+                print("Error Login Twitter: ",error ?? "")
+                return
+            }
+            print("Successful Login")
+        }
+        
+        view.addSubview(twitterLoginBtn)
+        
+        twitterLoginBtn.translatesAutoresizingMaskIntoConstraints = false
+        
+        let centerXContr = NSLayoutConstraint(item: twitterLoginBtn, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1.0, constant: 0.0)
+        
+        let YContr = NSLayoutConstraint(item: twitterLoginBtn, attribute: NSLayoutAttribute.topMargin, relatedBy: NSLayoutRelation.equal, toItem: topLayoutGuide, attribute: NSLayoutAttribute.bottomMargin, multiplier: 1.0, constant: 140.0)
+        let widthContr = NSLayoutConstraint(item: twitterLoginBtn, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.width, multiplier: 1.0, constant: -40.0)
+        
+        view.addConstraint(centerXContr)
+        view.addConstraint(YContr)
+        view.addConstraint(widthContr)
+        
+    }
+    
+    
     @IBAction func googleSigninAction(_ sender: Any) {
         
         GIDSignIn.sharedInstance().signIn()

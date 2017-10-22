@@ -10,6 +10,8 @@ import UIKit
 import FBSDKCoreKit
 import Firebase
 import GoogleSignIn
+import Fabric
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -33,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        
+        Fabric.with([Twitter.self])
         return true
     }
     

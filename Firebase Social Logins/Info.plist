@@ -2,6 +2,29 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    
+    <key>Fabric</key>
+    <dict>
+        <key>APIKey</key>
+        <string>914329ee0e43b862929c7340f88e5e31cebc3701</string>
+        <key>Kits</key>
+        <array>
+            <dict>
+                <key>KitInfo</key>
+                <dict>
+                    <key>publish-key</key>
+                    <string>Publish Key</string>
+                    <key>subscribe-key</key>
+                    <string>Subscribe Key</string>
+                    <key>secret-key</key>
+                    <string>Secret Key</string>
+                </dict>
+                <key>KitName</key>
+                <string>PubNub</string>
+            </dict>
+        </array>
+    </dict>
+    
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
